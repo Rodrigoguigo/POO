@@ -1,0 +1,104 @@
+<ui:composition template="template.xhtml"
+               xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+                
+        <ui:define name="title">
+		<h:outputText value="Cadastro de Clientes" />
+	</ui:define>
+
+	<ui:define name="principal">
+	<h1>Cadastro de cliente</h1>
+        <h:form id="formCliente">
+            <p:growl id="msgs" showDetail="true"/>
+            <p:panelGrid columns="2">
+                <p:outputLabel value="CPF"  />
+                <p:inputText value="#{clienteMB.cliente.cpf}"/>
+                <p:outputLabel value="Nome"  />
+                <p:inputText value="#{clienteMB.cliente.nome}"/>
+                <p:outputLabel value="Idade"  />
+                <p:inputText value="#{clienteMB.cliente.idade}"/>
+                <p:outputLabel value="Salario"/>
+                <p:inputText value="#{clienteMB.cliente.salario}"/>
+                 <p:outputLabel value="EMAIL"/>
+                 <p:inputText value="#{clienteMB.cliente.email}"/>
+            </p:panelGrid>
+             <p:commandButton value="Salvar" 
+                             action ="#{clienteMB.salvar()}"
+                             update=":formCliente"
+                             /> 
+        <p:dataTable id="cli" var="cl" value="#{clienteMB.clientes}"
+                    paginator="true"
+                    paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                    rowsPerPageTemplate="5,10,15"
+                    filteredValue="#{clienteMB.filteredCliente}"
+                    editable="true" editMode="cell"
+                    rowKey="#{cl.id}"
+                    selection="#{clienteMB.selectedCliente}" 
+                    selectionMode="single"
+                    
+                    >
+            <p:ajax event="cellEdit" listener="#{clienteMB.onCellEdit}" update=":formCliente:msgs" />
+            
+            <p:column filterBy="#{cl.id}" headerText="Id" filterMatchMode="contains">
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="#{cl.id}" /></f:facet>
+                    <f:facet name="input"><p:inputText id="modelInput0" value="#{cl.id}" style="width:96%"/></f:facet>
+               </p:cellEditor>
+            </p:column>
+            
+            <p:column filterBy="#{cl.cpf}" headerText="Cpf" filterMatchMode="contains">
+                <p:cellEditor>
+                   <f:facet name="output"><h:outputText value="#{cl.cpf}" /></f:facet>
+                   <f:facet name="input"><p:inputText id="modelInput1" value="#{cl.cpf}" style="width:96%"/></f:facet>
+               </p:cellEditor>
+            </p:column>
+
+            <p:column filterBy="#{cl.nome}" headerText="Nome" filterMatchMode="contains">
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="#{cl.nome}" /></f:facet>
+                    <f:facet name="input"><p:inputText id="modelInput2" value="#{cl.nome}" style="width:96%"/></f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column filterBy="#{cl.idade}" headerText="Idade" filterMatchMode="contains">
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="#{cl.idade}" /></f:facet>
+                    <f:facet name="input"><p:inputText id="modelInput3" value="#{cl.idade}" style="width:96%"/></f:facet>
+               </p:cellEditor>
+            </p:column>
+                
+            <p:column filterBy="#{cl.salario}" headerText="Salario" filterMatchMode="contains">
+                  <p:cellEditor>
+                      <f:facet name="output"><h:outputText value="#{cl.salario}" /></f:facet>
+                      <f:facet name="input"><p:inputText id="modelInput4" value="#{cl.salario}" style="width:96%"/></f:facet>
+                  </p:cellEditor>
+            </p:column>  
+            <p:column filterBy="#{cl.email}" headerText="Email" filterMatchMode="contains">
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="#{cl.email}" /></f:facet>
+                    <f:facet name="input"><p:inputText id="modelInput5" value="#{cl.email}" style="width:96%"/></f:facet>
+               </p:cellEditor>
+            </p:column> 
+            
+        </p:dataTable>
+         
+        <p:contextMenu for="cli">
+            <p:menuitem value="Delete" 
+                        update="cli" 
+                        icon="ui-icon-close"
+                        actionListener="#{clienteMB.removeFromList()}"/>
+        </p:contextMenu>
+            
+        </h:form>
+
+
+	</ui:define>
+</ui:composition>
+
+
+
+
+
