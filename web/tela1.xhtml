@@ -2,13 +2,87 @@
                xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:p="http://primefaces.org/ui">
                 
         <ui:define name="title">
-		<h:outputText value="Tela1" />
+		<h:outputText value="Cadastro de Produtos" />
 	</ui:define>
 
 	<ui:define name="principal">
-			<h1>Tela1</h1>
+			<h1>Cadastro de produto</h1>
+        <h:form id="formproduto">
+            <p:growl id="msgs" showDetail="true"/>
+            <p:panelGrid columns="2">
+                <p:outputLabel value="Imposto"  />
+                <p:inputText value="#{produtoMB.produto.imposto}"/>
+                <p:outputLabel value="Nome"  />
+                <p:inputText value="#{produtoMB.produto.nome}"/>
+                <p:outputLabel value="Moeda"  />
+                <p:inputText value="#{produtoMB.produto.moeda}"/>
+                <p:outputLabel value="Preco"/>
+                <p:inputText value="#{produtoMB.produto.preco}"/>
+                 
+            </p:panelGrid>
+             <p:commandButton value="Salvar" 
+                             action ="#{produtoMB.salvar()}"
+                             update=":formproduto"
+                             /> 
+        <p:dataTable id="pri" var="pr" value="#{produtoMB.produtos}"
+                    paginator="true"
+                    paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                    rowsPerPageTemplate="5,10,15"
+                    filteredValue="#{produtoMB.filteredProduto}"
+                    editable="true" editMode="cell"
+                    rowKey="#{pr.id}"
+                    selection="#{produtoMB.selectedProduto}" 
+                    selectionMode="single"
+                    
+                    >
+            <p:ajax event="cellEdit" listener="#{produtoMB.onCellEdit}" update=":formproduto:msgs" />
+            
+            <p:column filterBy="#{pr.id}" headerText="Id" filterMatchMode="contains">
+                    <f:facet name="output"><h:outputText value="#{pr.id}" /></f:facet>               
+            </p:column>
+            
+            <p:column filterBy="#{pr.imposto}" headerText="Imposto" filterMatchMode="contains">
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="#{pr.imposto}" /></f:facet>
+                    <f:facet name="input"><p:inputText id="modelInput1" value="#{pr.imposto}" style="width:96%"/></f:facet>
+               </p:cellEditor>
+            </p:column>
+
+            <p:column filterBy="#{pr.nome}" headerText="Nome" filterMatchMode="contains">
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="#{pr.nome}" /></f:facet>
+                    <f:facet name="input"><p:inputText id="modelInput2" value="#{pr.nome}" style="width:96%"/></f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column filterBy="#{pr.moeda}" headerText="Status" filterMatchMode="contains">
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="#{pr.moeda}" /></f:facet>
+                    <f:facet name="input"><p:inputText id="modelInput3" value="#{pr.moeda}" style="width:96%"/></f:facet>
+               </p:cellEditor>
+            </p:column>
+                
+            <p:column filterBy="#{pr.preco}" headerText="Limite" filterMatchMode="contains">
+                  <p:cellEditor>
+                      <f:facet name="output"><h:outputText value="#{pr.preco}" /></f:facet>
+                      <f:facet name="input"><p:inputText id="modelInput4" value="#{pr.preco}" style="width:96%"/></f:facet>
+                  </p:cellEditor>
+            </p:column>  
+            
+            
+        </p:dataTable>
+         
+        <p:contextMenu for="pri">
+            <p:menuitem value="Delete" 
+                        update="pri" 
+                        icon="ui-icon-prose"
+                        actionListener="#{produtoMB.removeFromList()}"/>
+        </p:contextMenu>
+            
+        </h:form>
 	</ui:define>
 </ui:composition>

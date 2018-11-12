@@ -43,9 +43,7 @@
             <p:ajax event="cellEdit" listener="#{clienteMB.onCellEdit}" update=":formCliente:msgs" />
             
             <p:column filterBy="#{cl.id}" headerText="Id" filterMatchMode="contains">
-                <p:cellEditor>
                     <f:facet name="output"><h:outputText value="#{cl.id}" /></f:facet>               
-               </p:cellEditor>
             </p:column>
             
             <p:column filterBy="#{cl.telefone}" headerText="Telefone" filterMatchMode="contains">

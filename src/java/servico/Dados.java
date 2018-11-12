@@ -8,6 +8,7 @@ package servico;
 import java.util.ArrayList;
 import modelo.Cliente;
 import modelo.Funcionario;
+import modelo.Produto;
 
 /**
  *
@@ -17,5 +18,5 @@ public class Dados {
     
     public static final ArrayList<Funcionario> LISTA_FUNCIONARIOS = new ArrayList();
     public static final ArrayList<Cliente> LISTA_CLIENTE = new ArrayList();
-    
+    public static final ArrayList<Produto> LISTA_PRODUTO = new ArrayList();
 }

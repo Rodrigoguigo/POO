@@ -16,7 +16,7 @@ public class Cliente {
     private String telefone;
     private int status;
     private double limite;
-    private static int cont;
+    private static int cont=0;
     
 
     public Cliente()
