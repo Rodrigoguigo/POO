@@ -14,16 +14,16 @@
         <h:form id="formCliente">
             <p:growl id="msgs" showDetail="true"/>
             <p:panelGrid columns="2">
-                <p:outputLabel value="CPF"  />
-                <p:inputText value="#{clienteMB.cliente.cpf}"/>
+                <p:outputLabel value="Telefone"  />
+                <p:inputText value="#{clienteMB.cliente.telefone}"/>
                 <p:outputLabel value="Nome"  />
                 <p:inputText value="#{clienteMB.cliente.nome}"/>
-                <p:outputLabel value="Idade"  />
-                <p:inputText value="#{clienteMB.cliente.idade}"/>
-                <p:outputLabel value="Salario"/>
-                <p:inputText value="#{clienteMB.cliente.salario}"/>
-                 <p:outputLabel value="EMAIL"/>
-                 <p:inputText value="#{clienteMB.cliente.email}"/>
+                <p:outputLabel value="Status"  />
+                <p:inputText value="#{clienteMB.cliente.status}"/>
+                <p:outputLabel value="Limite"/>
+                <p:inputText value="#{clienteMB.cliente.limite}"/>
+                 <p:outputLabel value="Endereco"/>
+                 <p:inputText value="#{clienteMB.cliente.endereco}"/>
             </p:panelGrid>
              <p:commandButton value="Salvar" 
                              action ="#{clienteMB.salvar()}"
@@ -44,15 +44,14 @@
             
             <p:column filterBy="#{cl.id}" headerText="Id" filterMatchMode="contains">
                 <p:cellEditor>
-                    <f:facet name="output"><h:outputText value="#{cl.id}" /></f:facet>
-                    <f:facet name="input"><p:inputText id="modelInput0" value="#{cl.id}" style="width:96%"/></f:facet>
+                    <f:facet name="output"><h:outputText value="#{cl.id}" /></f:facet>               
                </p:cellEditor>
             </p:column>
             
-            <p:column filterBy="#{cl.cpf}" headerText="Cpf" filterMatchMode="contains">
+            <p:column filterBy="#{cl.telefone}" headerText="Telefone" filterMatchMode="contains">
                 <p:cellEditor>
-                   <f:facet name="output"><h:outputText value="#{cl.cpf}" /></f:facet>
-                   <f:facet name="input"><p:inputText id="modelInput1" value="#{cl.cpf}" style="width:96%"/></f:facet>
+                   <f:facet name="output"><h:outputText value="#{cl.telefone}" /></f:facet>
+                   <f:facet name="input"><p:inputText id="modelInput1" value="#{cl.telefone}" style="width:96%"/></f:facet>
                </p:cellEditor>
             </p:column>
 
@@ -63,23 +62,23 @@
                 </p:cellEditor>
             </p:column>
 
-            <p:column filterBy="#{cl.idade}" headerText="Idade" filterMatchMode="contains">
+            <p:column filterBy="#{cl.status}" headerText="Status" filterMatchMode="contains">
                 <p:cellEditor>
-                    <f:facet name="output"><h:outputText value="#{cl.idade}" /></f:facet>
-                    <f:facet name="input"><p:inputText id="modelInput3" value="#{cl.idade}" style="width:96%"/></f:facet>
+                    <f:facet name="output"><h:outputText value="#{cl.status}" /></f:facet>
+                    <f:facet name="input"><p:inputText id="modelInput3" value="#{cl.status}" style="width:96%"/></f:facet>
                </p:cellEditor>
             </p:column>
                 
-            <p:column filterBy="#{cl.salario}" headerText="Salario" filterMatchMode="contains">
+            <p:column filterBy="#{cl.limite}" headerText="Limite" filterMatchMode="contains">
                   <p:cellEditor>
-                      <f:facet name="output"><h:outputText value="#{cl.salario}" /></f:facet>
-                      <f:facet name="input"><p:inputText id="modelInput4" value="#{cl.salario}" style="width:96%"/></f:facet>
+                      <f:facet name="output"><h:outputText value="#{cl.limite}" /></f:facet>
+                      <f:facet name="input"><p:inputText id="modelInput4" value="#{cl.limite}" style="width:96%"/></f:facet>
                   </p:cellEditor>
             </p:column>  
-            <p:column filterBy="#{cl.email}" headerText="Email" filterMatchMode="contains">
+            <p:column filterBy="#{cl.endereco}" headerText="Endereco" filterMatchMode="contains">
                 <p:cellEditor>
-                    <f:facet name="output"><h:outputText value="#{cl.email}" /></f:facet>
-                    <f:facet name="input"><p:inputText id="modelInput5" value="#{cl.email}" style="width:96%"/></f:facet>
+                    <f:facet name="output"><h:outputText value="#{cl.endereco}" /></f:facet>
+                    <f:facet name="input"><p:inputText id="modelInput5" value="#{cl.endereco}" style="width:96%"/></f:facet>
                </p:cellEditor>
             </p:column> 
             

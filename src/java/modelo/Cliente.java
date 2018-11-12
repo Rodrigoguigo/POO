@@ -10,13 +10,14 @@ package modelo;
  * @author 171071
  */
 public class Cliente {
-    private String cpf;
-    private int idade;
-    private String nome;
-    private double salario;
-    private String email;
-    private static int cont;
     private int id;
+    private String nome;
+     private String endereco;
+    private String telefone;
+    private int status;
+    private double limite;
+    private static int cont;
+    
 
     public Cliente()
     {
@@ -32,20 +33,20 @@ public class Cliente {
     }
     
     
-    public String getCpf() {
-        return cpf;
+    public String getTelefone() {
+        return telefone;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
-    public int getIdade() {
-        return idade;
+    public int getStatus() {
+        return status;
     }
 
-    public void setIdade(int idade) {
-        this.idade = idade;
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public String getNome() {
@@ -56,21 +57,23 @@ public class Cliente {
         this.nome = nome;
     }
 
-    public double getSalario() {
-        return salario;
+    public double getLimite() {
+        return limite;
     }
 
-    public void setSalario(double salario) {
-        this.salario = salario;
+    public void setLimite(double limite) {
+        this.limite = limite;
     }
 
-    public String getEmail() {
-        return email;
+    public String getEndereco() {
+        return endereco;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
+
+    
     
     
     
