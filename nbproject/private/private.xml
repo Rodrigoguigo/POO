@@ -14,20 +14,23 @@
             <file>file:/C:/Users/glauc/Documents/NetBeansProjects/PrAula30102018/web/funcionario.xhtml</file>
         </group>
         <group>
-            <file>file:/C:/Users/171071/Downloads/TemplateProjetoFinal/src/java/servico/ClienteServico.java</file>
-            <file>file:/C:/Users/171071/Downloads/TemplateProjetoFinal/web/menu.xhtml</file>
-            <file>file:/C:/Users/171071/Downloads/TemplateProjetoFinal/web/template.xhtml</file>
-            <file>file:/C:/Users/171071/Downloads/TemplateProjetoFinal/src/java/servico/FuncionarioService.java</file>
-            <file>file:/C:/Users/171071/Downloads/TemplateProjetoFinal/src/java/modelo/Funcionario.java</file>
-            <file>file:/C:/Users/171071/Downloads/TemplateProjetoFinal/src/java/managedbean/ClienteMB.java</file>
-            <file>file:/C:/Users/171071/Downloads/TemplateProjetoFinal/web/tela2.xhtml</file>
-            <file>file:/C:/Users/171071/Downloads/TemplateProjetoFinal/web/rodape.xhtml</file>
-            <file>file:/C:/Users/171071/Downloads/TemplateProjetoFinal/web/tela1.xhtml</file>
-            <file>file:/C:/Users/171071/Downloads/TemplateProjetoFinal/src/java/servico/Dados.java</file>
-            <file>file:/C:/Users/171071/Downloads/TemplateProjetoFinal/src/java/managedbean/FuncionarioMB.java</file>
-            <file>file:/C:/Users/171071/Downloads/TemplateProjetoFinal/src/java/modelo/Cliente.java</file>
-            <file>file:/C:/Users/171071/Downloads/TemplateProjetoFinal/web/cliente.xhtml</file>
-            <file>file:/C:/Users/171071/Downloads/TemplateProjetoFinal/web/index.xhtml</file>
+            <file>file:/C:/Users/gutao/OneDrive/Área%20de%20Trabalho/POO/web/index.xhtml</file>
+            <file>file:/C:/Users/gutao/OneDrive/Área%20de%20Trabalho/POO/src/java/modelo/Produto.java</file>
+            <file>file:/C:/Users/gutao/OneDrive/Área%20de%20Trabalho/POO/web/menu.xhtml</file>
+            <file>file:/C:/Users/gutao/OneDrive/Área%20de%20Trabalho/POO/src/java/modelo/ItemPedido.java</file>
+            <file>file:/C:/Users/gutao/OneDrive/Área%20de%20Trabalho/POO/src/java/managedbean/ClienteMB.java</file>
+            <file>file:/C:/Users/gutao/OneDrive/Área%20de%20Trabalho/POO/web/template.xhtml</file>
+            <file>file:/C:/Users/gutao/OneDrive/Área%20de%20Trabalho/POO/src/java/servico/ClienteServico.java</file>
+            <file>file:/C:/Users/gutao/OneDrive/Área%20de%20Trabalho/POO/src/java/modelo/ProdutoMercadoInterno.java</file>
+            <file>file:/C:/Users/gutao/OneDrive/Área%20de%20Trabalho/POO/src/java/managedbean/ProdutoMB.java</file>
+            <file>file:/C:/Users/gutao/OneDrive/Área%20de%20Trabalho/POO/web/tela1.xhtml</file>
+            <file>file:/C:/Users/gutao/OneDrive/Área%20de%20Trabalho/POO/src/java/modelo/ProdutoExportação.java</file>
+            <file>file:/C:/Users/gutao/OneDrive/Área%20de%20Trabalho/POO/web/cliente.xhtml</file>
+            <file>file:/C:/Users/gutao/OneDrive/Área%20de%20Trabalho/POO/src/java/modelo/Pedido.java</file>
+            <file>file:/C:/Users/gutao/OneDrive/Área%20de%20Trabalho/POO/src/java/modelo/Cliente.java</file>
+            <file>file:/C:/Users/gutao/OneDrive/Área%20de%20Trabalho/POO/src/java/servico/ProdutoServico.java</file>
+            <file>file:/C:/Users/gutao/OneDrive/Área%20de%20Trabalho/POO/src/java/servico/Dados.java</file>
+            <file>file:/C:/Users/gutao/OneDrive/Área%20de%20Trabalho/POO/src/java/modelo/Categoria.java</file>
         </group>
     </open-files>
 </project-private>

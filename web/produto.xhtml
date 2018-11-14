@@ -22,6 +22,11 @@
                 <p:inputText value="#{produtoMB.produto.moeda}"/>
                 <p:outputLabel value="Preco"/>
                 <p:inputText value="#{produtoMB.produto.preco}"/>
+                <p:outputLabel value="Categoria"/>
+                <p:selectOneMenu id="categoria" value="#{produtoMB.produto.categoria.descricao}" style="width:150px">                
+                <f:selectItem itemLabel="Sem Categoria" itemValue="" noSelectionOption="true" />
+                <f:selectItems value="#{categoriaMB.categorias}" />
+            </p:selectOneMenu>
                  
             </p:panelGrid>
              <p:commandButton value="Salvar" 
@@ -42,7 +47,10 @@
             <p:ajax event="cellEdit" listener="#{produtoMB.onCellEdit}" update=":formproduto:msgs" />
             
             <p:column filterBy="#{pr.id}" headerText="Id" filterMatchMode="contains">
-                    <f:facet name="output"><h:outputText value="#{pr.id}" /></f:facet>               
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="#{pr.id}" /></f:facet>
+                    <f:facet name="input"><p:inputText id="modelInput" style="width:96%"/></f:facet>
+                    </p:cellEditor>
             </p:column>
             
             <p:column filterBy="#{pr.imposto}" headerText="Imposto" filterMatchMode="contains">
@@ -71,7 +79,19 @@
                       <f:facet name="output"><h:outputText value="#{pr.preco}" /></f:facet>
                       <f:facet name="input"><p:inputText id="modelInput4" value="#{pr.preco}" style="width:96%"/></f:facet>
                   </p:cellEditor>
-            </p:column>  
+            </p:column>
+            
+            <p:column filterBy="#{pr.categoria.descricao}" headerText="Categoria" filterMatchMode="contains">
+                  <p:cellEditor>
+                      <f:facet name="output"><h:outputText value="#{pr.categoria.descricao}" /></f:facet>
+                      <f:facet name="input">
+                          <p:selectOneMenu id="categoria" value="#{pr.categoria.descricao}" style="width:150px">                
+                                    <f:selectItem itemLabel="Sem Categoria" itemValue="" noSelectionOption="true" />
+                                    <f:selectItems value="#{categoriaMB.categorias}" />
+                            </p:selectOneMenu>
+                      </f:facet>
+                  </p:cellEditor>
+            </p:column> 
             
             
         </p:dataTable>

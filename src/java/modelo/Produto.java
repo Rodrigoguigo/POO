@@ -15,7 +15,7 @@ public class Produto {
     private double preco;
     private int moeda;
     private double imposto;
-    private Categoria categoria;
+    private Categoria categoria = new Categoria();
     private static int cont=0;
     
      public Produto()
