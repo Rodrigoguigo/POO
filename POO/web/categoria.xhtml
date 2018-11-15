@@ -1,0 +1,65 @@
+<ui:composition template="template.xhtml"
+               xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+                
+        <ui:define name="title">
+		<h:outputText value="Tela2" />
+	</ui:define>
+
+	<ui:define name="principal">
+			<h1>Cadastro de categoria</h1>
+        <h:form id="formcategoria">
+            <p:growl id="msgs" showDetail="true"/>
+            <p:panelGrid columns="2">
+                <p:outputLabel value="Descrição"  />
+                <p:inputText value="#{categoriaMB.categoria.descricao}"/>         
+            </p:panelGrid>
+             <p:commandButton value="Salvar" 
+                             action ="#{categoriaMB.salvar()}"
+                             update=":formcategoria"
+                             /> 
+        <p:dataTable id="cgi" var="cg" value="#{categoriaMB.categorias}"
+                    paginator="true"
+                    paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                    rowsPerPageTemplate="5,10,15"
+                    filteredValue="#{categoriaMB.filteredCategoria}"
+                    editable="true" editMode="cell"
+                    rowKey="#{cg.id}"
+                    selection="#{categoriaMB.selectedCategoria}" 
+                    selectionMode="single"
+                    
+                    >
+            <p:ajax event="cellEdit" listener="#{categoriaMB.onCellEdit}" update=":formcategoria:msgs" />
+            
+            <p:column filterBy="#{cg.id}" headerText="Id" filterMatchMode="contains">
+                    <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="#{cg.id}" /></f:facet>
+                    <f:facet name="input"><p:inputText id="modelInput" style="width:96%"/></f:facet>
+                    </p:cellEditor>               
+            </p:column>
+            
+            <p:column filterBy="#{cg.descricao}" headerText="Descrição" filterMatchMode="contains">
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="#{cg.descricao}" /></f:facet>
+                    <f:facet name="input"><p:inputText id="modelInput1" value="#{cg.descricao}" style="width:96%"/></f:facet>
+               </p:cellEditor>
+            </p:column>
+
+            
+            
+        </p:dataTable>
+         
+        <p:contextMenu for="cgi">
+            <p:menuitem value="Delete" 
+                        update="cgi" 
+                        icon="ui-icon-cgose"
+                        actionListener="#{categoriaMB.removeFromList()}"/>
+        </p:contextMenu>
+            
+        </h:form>
+
+	</ui:define>
+</ui:composition>
