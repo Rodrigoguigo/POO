@@ -34,11 +34,11 @@ public class ProdutoInternoMB {
         this.produtoInterno = produtoInterno;
     }
 
-    public List<ProdutoMercadoInterno> getFilteredProduto() {
+    public List<ProdutoMercadoInterno> getFilteredProdutoInterno() {
         return filteredProdutoInterno;
     }
 
-    public void setFilteredProduto(List<ProdutoMercadoInterno> filteredProduto) {
+    public void setFilteredProdutoInterno(List<ProdutoMercadoInterno> filteredProduto) {
         this.filteredProdutoInterno = filteredProduto;
     }
 

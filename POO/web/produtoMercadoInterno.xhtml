@@ -6,45 +6,48 @@
                 xmlns:p="http://primefaces.org/ui">
                 
         <ui:define name="title">
-		<h:outputText value="Cadastro de Produtos" />
+		<h:outputText value="Cadastro de Produtos " />
 	</ui:define>
 
 	<ui:define name="principal">
-			<h1>Cadastro de produto</h1>
-        <h:form id="formproduto">
+			<h1>Cadastro de produtoInterno</h1>
+        <h:form id="formprodutoInterno">
             <p:growl id="msgs" showDetail="true"/>
             <p:panelGrid columns="2">
                 <p:outputLabel value="Imposto"  />
-                <p:inputText value="#{produtoMB.produto.imposto}"/>
+                <p:inputText value="#{produtoInternoMB.produtoInterno.imposto}"/>
                 <p:outputLabel value="Nome"  />
-                <p:inputText value="#{produtoMB.produto.nome}"/>
+                <p:inputText value="#{produtoInternoMB.produtoInterno.nome}"/>
                 <p:outputLabel value="Moeda"  />
-                <p:inputText value="#{produtoMB.produto.moeda}"/>
+                <p:inputText value="#{produtoInternoMB.produtoInterno.moeda}"/>
                 <p:outputLabel value="Preco"/>
-                <p:inputText value="#{produtoMB.produto.preco}"/>
+                <p:inputText value="#{produtoInternoMB.produtoInterno.preco}"/>
                 <p:outputLabel value="Categoria"/>
-                <p:selectOneMenu id="categoria" value="#{produtoMB.produto.categoria.descricao}" style="width:150px">                
-                <f:selectItem itemLabel="Sem Categoria" itemValue="" noSelectionOption="true" />
-                <f:selectItems value="#{categoriaMB.categorias}" />
-            </p:selectOneMenu>
+                <p:selectOneMenu id="categoria" value="#{produtoInternoMB.produtoInterno.categoria.descricao}" style="width:150px">                
+                    <f:selectItem itemLabel="Sem Categoria" itemValue="" noSelectionOption="true" />
+                    <f:selectItems value="#{categoriaMB.categorias}" />
+                </p:selectOneMenu>
+                <p:outputLabel value="Incentivo:"/>
+                <p:selectBooleanCheckbox value="#{produtoInternoMB.produtoInterno.incentivo}"/>
                  
             </p:panelGrid>
              <p:commandButton value="Salvar" 
-                             action ="#{produtoMB.salvar()}"
-                             update=":formproduto"
+                             action ="#{produtoInternoMB.salvar()}"
+                             update=":formprodutoInterno"
                              /> 
-        <p:dataTable id="pri" var="pr" value="#{produtoMB.produtos}"
+        <p:dataTable id="pri" var="pr" value="#{produtoInternoMB.produtosInternos}"
                     paginator="true"
                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                     rowsPerPageTemplate="5,10,15"
-                    filteredValue="#{produtoMB.filteredProduto}"
+                    filteredValue="#{produtoInternoMB.filteredProdutoInterno}"
                     editable="true" editMode="cell"
                     rowKey="#{pr.id}"
-                    selection="#{produtoMB.selectedProduto}" 
+                    selection="#{produtoInternoMB.selectedProdutoInterno}" 
                     selectionMode="single"
+                    widgetVar="produtosTable"
                     
                     >
-            <p:ajax event="cellEdit" listener="#{produtoMB.onCellEdit}" update=":formproduto:msgs" />
+            <p:ajax event="cellEdit" listener="#{produtoInternoMB.onCellEdit}" update=":formprodutoInterno:msgs" />
             
             <p:column filterBy="#{pr.id}" headerText="Id" filterMatchMode="contains">
                 <p:cellEditor>
@@ -93,14 +96,27 @@
                   </p:cellEditor>
             </p:column> 
             
-            
+            <p:column filterBy="#{pr.incentivo}" headerText="Incentivo" filterMatchMode="equals">
+                <f:facet name="filter">
+                    <p:selectOneButton onchange="PF('produtosTable').filter()">
+                        <f:converter converterId="javax.faces.Boolean"/>
+                        <f:selectItem itemLabel="True" itemValue="true"/>
+                        <f:selectItem itemLabel="False" itemValue="false"/>
+                        <f:selectItem itemLabel="All" itemValue=""/>
+                    </p:selectOneButton>
+                </f:facet>
+                <p:cellEditor>
+                    <f:facet name="output"><p:selectBooleanCheckbox value="#{pr.incentivo}" disabled="true"/></f:facet>
+                    <f:facet name="input"><p:selectBooleanCheckbox value="#{pr.incentivo}"/></f:facet>
+                </p:cellEditor>
+            </p:column>
         </p:dataTable>
          
         <p:contextMenu for="pri">
             <p:menuitem value="Delete" 
                         update="pri" 
                         icon="ui-icon-prose"
-                        actionListener="#{produtoMB.removeFromList()}"/>
+                        actionListener="#{produtoInternoMB.removeFromList()}"/>
         </p:contextMenu>
             
         </h:form>
