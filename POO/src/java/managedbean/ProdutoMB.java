@@ -5,6 +5,7 @@
  */
 package managedbean;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -28,6 +29,7 @@ public class ProdutoMB {
     private ProdutoServico servico = new ProdutoServico();
     private List<Produto> filteredProduto = servico.gatAllProdutos();
     private Produto selectedProduto;
+
 
     public Produto getSelectedProduto() {
         return selectedProduto;

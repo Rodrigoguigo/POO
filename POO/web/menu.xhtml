@@ -7,7 +7,10 @@
 		<p:submenu label="Cadastro">
 			<p:submenu label="Itens">
 				<p:menuitem value="Cliente" url="/faces/cliente.xhtml" ></p:menuitem>
-				<p:menuitem value="Produto"   url="/faces/produtoExportacao.xhtml"></p:menuitem>
+                                <p:submenu label="Produto">
+                                    <p:menuitem value="Produto Externo" url="/faces/produtoExportacao.xhtml"></p:menuitem>
+                                    <p:menuitem value="Produto Interno" url="/faces/produtoMercadoInterno.xhtml"></p:menuitem>
+                                </p:submenu>
 				<p:menuitem value="Categoria"   url="/faces/categoria.xhtml"></p:menuitem>
 			</p:submenu>
 		</p:submenu>

@@ -11,6 +11,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import modelo.Cliente;
+import modelo.Pedido;
 import org.primefaces.event.CellEditEvent;
 import org.primefaces.event.RowEditEvent;
 import servico.ClienteServico;
@@ -26,6 +27,37 @@ public class ClienteMB  {
     private ClienteServico servico = new ClienteServico();
     private List<Cliente> filteredCliente = servico.gatAllClientes();
     private Cliente selectedCliente;
+    private List<Pedido> filteredPedido;
+    private Pedido selectedPedido;
+    private Pedido pedido = new Pedido();
+
+    public Pedido getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
+    }
+    
+
+    
+    public List<Pedido> getFilteredPedido() {
+        return filteredPedido;
+    }
+
+    public void setFilteredPedido(List<Pedido> filteredPedido) {
+        this.filteredPedido = filteredPedido;
+    }
+
+    public Pedido getSelectedPedido() {
+        return selectedPedido;
+    }
+
+    public void setSelectedPedido(Pedido selectedPedido) {
+        this.selectedPedido = selectedPedido;
+    }
+    
+    
 
     public Cliente getSelectedCliente() {
         return selectedCliente;

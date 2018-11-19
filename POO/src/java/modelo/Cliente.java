@@ -5,6 +5,8 @@
  */
 package modelo;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author 171071
@@ -16,7 +18,17 @@ public class Cliente {
     private String telefone;
     private int status;
     private double limite;
+    private ArrayList<Pedido> itens = new ArrayList<>();
     private static int cont=0;
+
+    public ArrayList<Pedido> getItens() {
+        return itens;
+    }
+
+    public void setItens(ArrayList<Pedido> itens) {
+        this.itens = itens;
+    }
+    
     
 
     public Cliente()
