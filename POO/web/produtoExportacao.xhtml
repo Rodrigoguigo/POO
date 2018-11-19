@@ -24,8 +24,8 @@
                 <p:inputText value="#{produtoExportacaoMB.produtoExportacao.preco}"/>
                 <p:outputLabel value="Categoria"/>
                 <p:selectOneMenu id="categoria" value="#{produtoExportacaoMB.produtoExportacao.categoria.descricao}" style="width:150px">                
-                <f:selectItem itemLabel="Sem Categoria" itemValue="" noSelectionOption="true" />
-                <f:selectItems value="#{categoriaMB.categorias}" />
+                    <f:selectItem itemLabel="Sem Categoria" itemValue="" noSelectionOption="true" />
+                    <f:selectItems value="#{categoriaMB.categorias}" />
                 </p:selectOneMenu>
                 <p:outputLabel value="Destino"/>
                 <p:inputText value="#{produtoExportacaoMB.produtoExportacao.destino}"/>
@@ -101,6 +101,7 @@
                       <f:facet name="output"><h:outputText value="#{pr.destino}" /></f:facet>
                       <f:facet name="input"><p:inputText id="modelInput4" value="#{pr.destino}" style="width:96%"/></f:facet>
                   </p:cellEditor>
+
             </p:column>
             
             
