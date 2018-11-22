@@ -26,39 +26,9 @@ public class ClienteMB  {
     private Cliente cliente = new Cliente();
     private ClienteServico servico = new ClienteServico();
     private List<Cliente> filteredCliente = servico.gatAllClientes();
-    private Cliente selectedCliente;
-    private List<Pedido> filteredPedido;
-    private Pedido selectedPedido;
-    private Pedido pedido = new Pedido();
-
-    public Pedido getPedido() {
-        return pedido;
-    }
-
-    public void setPedido(Pedido pedido) {
-        this.pedido = pedido;
-    }
+    private Cliente selectedCliente;  
+        
     
-
-    
-    public List<Pedido> getFilteredPedido() {
-        return filteredPedido;
-    }
-
-    public void setFilteredPedido(List<Pedido> filteredPedido) {
-        this.filteredPedido = filteredPedido;
-    }
-
-    public Pedido getSelectedPedido() {
-        return selectedPedido;
-    }
-
-    public void setSelectedPedido(Pedido selectedPedido) {
-        this.selectedPedido = selectedPedido;
-    }
-    
-    
-
     public Cliente getSelectedCliente() {
         return selectedCliente;
     }

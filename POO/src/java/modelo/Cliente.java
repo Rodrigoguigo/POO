@@ -18,15 +18,15 @@ public class Cliente {
     private String telefone;
     private int status;
     private double limite;
-    private ArrayList<Pedido> itens = new ArrayList<>();
+    private ArrayList<Pedido> clPedidos = new ArrayList<>();
     private static int cont=0;
 
-    public ArrayList<Pedido> getItens() {
-        return itens;
+    public ArrayList<Pedido> getClPedidos() {
+        return clPedidos;
     }
 
-    public void setItens(ArrayList<Pedido> itens) {
-        this.itens = itens;
+    public void setClPedidos(ArrayList<Pedido> clPedidos) {
+        this.clPedidos = clPedidos;
     }
     
     
@@ -83,6 +83,11 @@ public class Cliente {
 
     public void setEndereco(String endereco) {
         this.endereco = endereco;
+    }
+
+    @Override
+    public String toString() {
+        return "Cliente{" + "id= " + id + " , nome= " + nome + " }";
     }
 
     

@@ -15,9 +15,9 @@ import java.util.Date;
 public class Pedido {
     private long numero;
     private Date data;
-    private ArrayList<ItemPedido> itens;
+    private ArrayList<ItemPedido> itens = new ArrayList();
     private Cliente cliente;
-    private long cont;
+    private static long cont = 0;
     
     public Pedido()
     {

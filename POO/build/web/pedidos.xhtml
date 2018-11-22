@@ -1,16 +1,82 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
-</html>
+<ui:composition template="template.xhtml"
+               xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+                
+        <ui:define name="title">
+		<h:outputText value="Cadastro de Pedidos" />
+	</ui:define>
+
+	<ui:define name="principal">
+			<h1>Cadastro de pedidos</h1>
+        <h:form id="formproduto">
+            <p:growl id="msgs" showDetail="true"/>
+            <p:panelGrid columns="2">
+                
+                <p:outputLabel value="Cliente"/>
+                <p:selectOneMenu id="categoria" value="#{pedidoItemMB.aux}" style="width:150px">                
+                <f:selectItem  noSelectionOption="false" />
+                <f:selectItems value="#{clienteMB.clientes}" />
+            </p:selectOneMenu>
+                 
+            </p:panelGrid>
+             <p:commandButton value="Salvar" 
+                              action ="#{pedidoItemMB.salvar()}"
+                             update=":formproduto"
+                             /> 
+             <p:dataTable id="pri" var="pi" value="#{pedidoItemMB.clientePedido}"
+                    paginator="true"
+                    paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                    rowsPerPageTemplate="5,10,15"
+                    filteredValue="#{pedidoItemMB.filteredPedido}"
+                    editable="true" editMode="cell"
+                    rowKey="#{pi.numero}"
+                    selection="#{pedidoItemMB.selectedPedido}" 
+                    selectionMode="single"
+                    
+                    >
+            <p:ajax event="cellEdit" listener="#{produtoMB.onCellEdit}" update=":formproduto:msgs" />
+            
+            <p:column filterBy="#{pi.numero}" headerText="Id" filterMatchMode="contains">
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="#{pi.numero}" /></f:facet>
+                    <f:facet name="input"><p:inputText id="modelInput" style="width:96%"/></f:facet>
+                    </p:cellEditor>
+            </p:column>
+            
+            <p:column filterBy="#{pi.cliente.nome}" headerText="Nome" filterMatchMode="contains">
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="#{pi.cliente.nome}" /></f:facet>
+                    <f:facet name="input"><p:inputText id="modelInput1" style="width:96%"/></f:facet>
+               </p:cellEditor>
+            </p:column>
+
+            <p:column filterBy="#{pi.data}" headerText="Data" filterMatchMode="contains">
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="#{pi.data}" /></f:facet>
+                    <f:facet name="input"><p:inputText id="modelInput2" value="#{pi.data}" style="width:96%"/></f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column filterBy="#{pedidoItemMB.qtItem(pi)}" headerText="Quantidade de itens" filterMatchMode="contains">
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="#{pedidoItemMB.qtItem(pi)}" /></f:facet>
+                    <f:facet name="input"><p:inputText id="modelInput3" value="" style="width:96%"/></f:facet>
+               </p:cellEditor>
+            </p:column>
+                            
+            
+        </p:dataTable>
+         
+        <p:contextMenu for="pri">
+            <p:menuitem value="Delete" 
+                        update="pri" 
+                        icon="ui-icon-prose"
+                        actionListener="#{PedidoItemMB.removePedidoFromList()}"/>
+        </p:contextMenu>
+            
+        </h:form>
+	</ui:define>
+</ui:composition>
