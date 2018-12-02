@@ -20,6 +20,13 @@ public class ItemPedido {
         cod = cont++;
     }
     
+    public ItemPedido(int qt, Produto prod)
+    {
+        quantidade = qt;
+        produto = prod;
+        cod = cont++;
+    }
+    
     double totalItem()
     {
         return quantidade*produto.getPreco();
@@ -30,9 +37,6 @@ public class ItemPedido {
         return cod;
     }
 
-    public void setCod(int cod) {
-        this.cod = cod;
-    }
 
     public int getQuantidade() {
         return quantidade;
@@ -49,6 +53,15 @@ public class ItemPedido {
     public void setProduto(Produto produto) {
         this.produto = produto;
     }
+
+    @Override
+    public String toString() {
+        return "Item de " + "ID= " + cod +
+                " com " + quantidade + 
+                ", produtos de nome" + produto.getNome()+
+                " dando um total de R$ "+ totalItem();
+    }
+    
     
   
   

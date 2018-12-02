@@ -5,8 +5,10 @@
  */
 package modelo;
 
+import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 import java.util.Date;
+import servico.ProdutoServico;
 
 /**
  *
@@ -18,13 +20,18 @@ public class Pedido {
     private ArrayList<ItemPedido> itens = new ArrayList();
     private Cliente cliente;
     private static long cont = 0;
+    private boolean addItem = false;
+    private ArrayList<String> descricaoItem = new ArrayList();
+    private double totalP;
+    private double totalI;
+    private int qt;
     
     public Pedido()
     {
         numero = cont++;
     }
     
-    double totalPedido()
+    public double totalPedido()
     {
         double sum = 0;
         for(ItemPedido item : itens)
@@ -34,23 +41,67 @@ public class Pedido {
         return sum;
     }
     
-    double totalImposto()
+    public double totalImposto()
     {
         double sum = 0;
         for(ItemPedido item : itens)
         {
-            sum+= item.getProduto().getImposto();
+            sum+= item.getProduto().getImposto()*item.getQuantidade();
         }
         return sum;      
     }
 
+    public ArrayList<String> getDescricaoItem() {
+        return descricaoItem;
+    }
+
+    public void setDescricaoItem(ArrayList<String> descricaoItem) {
+        this.descricaoItem = descricaoItem;
+    }
+    
+    
+
+    public boolean isAddItem() {
+        return addItem;
+    }
+
+    public void setAddItem(boolean addItem) {
+        this.addItem = addItem;
+    }
+    
+    public ArrayList<String> checarItens()
+    {
+        ArrayList<String> descricao = new ArrayList<>();
+        for(ItemPedido item : itens)
+        {
+            descricao.add(item.toString());
+        }
+        //montar string unica e adicionar deleção.
+        return descricao;
+    }   
+    
+    public int qtItens()
+    {
+        return itens.size();
+    }
+    
+    public void removeItem (String valor)
+    {
+        for(ItemPedido item : itens)
+        {
+            if(item.getCod() == Integer.parseInt(valor))
+            {
+                descricaoItem.remove(itens.indexOf(item));
+                itens.remove(item);               
+                break;
+            }
+        }
+    }
+    
     public long getNumero() {
         return numero;
     }
 
-    public void setNumero(long numero) {
-        this.numero = numero;
-    }
 
     public Date getData() {
         return data;
@@ -60,13 +111,7 @@ public class Pedido {
         this.data = data;
     }
 
-    public ArrayList<ItemPedido> getItens() {
-        return itens;
-    }
-
-    public void setItens(ArrayList<ItemPedido> itens) {
-        this.itens = itens;
-    }
+    
 
     public Cliente getCliente() {
         return cliente;
@@ -76,5 +121,13 @@ public class Pedido {
         this.cliente = cliente;
     }
     
+     public void criarItem(int qt,Produto prod)
+    {
+        
+        ItemPedido aux = new ItemPedido(qt,prod);
+        itens.add(aux);
+        descricaoItem.add(aux.toString());
+        
+    }
     
 }

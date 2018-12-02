@@ -13,6 +13,7 @@ import javax.faces.context.FacesContext;
 import modelo.ProdutoExportacao;
 import org.primefaces.event.CellEditEvent;
 import servico.ProdutoExportServico;
+import servico.ProdutoServico;
 
 /**
  *
@@ -25,6 +26,7 @@ public class ProdutoExportacaoMB {
     private ProdutoExportServico servico = new ProdutoExportServico();
     private List<ProdutoExportacao> filteredProdutoExportacao = servico.getAllProdutosExportacao();
     private ProdutoExportacao selectedProdutoExportacao;
+    private ProdutoServico ajuda = new ProdutoServico();
 
     public ProdutoExportacao getProdutoExportacao() {
         return produtoExportacao;
@@ -53,8 +55,10 @@ public class ProdutoExportacaoMB {
     public void salvar ()
     {
         servico.salvar(produtoExportacao);
+        ajuda.getAllProdutos().add(produtoExportacao);
         produtoExportacao= new ProdutoExportacao();
         filteredProdutoExportacao = servico.getAllProdutosExportacao();
+        
     }
     
     public List<ProdutoExportacao> getProdutosExportacao ()    {
@@ -76,6 +80,7 @@ public class ProdutoExportacaoMB {
     {
         servico.remover(selectedProdutoExportacao);
         filteredProdutoExportacao.remove(selectedProdutoExportacao);
+        ajuda.getAllProdutos().remove(selectedProdutoExportacao);
         selectedProdutoExportacao = null;
     }
 }

@@ -27,7 +27,7 @@ import servico.ProdutoServico;
 public class ProdutoMB {
     private Produto produto = new Produto();
     private ProdutoServico servico = new ProdutoServico();
-    private List<Produto> filteredProduto = servico.gatAllProdutos();
+    private List<Produto> filteredProduto = servico.getAllProdutos();
     private Produto selectedProduto;
 
 
@@ -67,11 +67,11 @@ public class ProdutoMB {
     {
         servico.salvar(produto);
         produto= new Produto();
-        filteredProduto = servico.gatAllProdutos();
+        filteredProduto = servico.getAllProdutos();
     }
     
     public List<Produto> getProdutos ()    {
-        return servico.gatAllProdutos();
+        return servico.getAllProdutos();
         
     }
     

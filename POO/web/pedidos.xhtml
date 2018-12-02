@@ -16,17 +16,17 @@
             <p:panelGrid columns="2">
                 
                 <p:outputLabel value="Cliente"/>
-                <p:selectOneMenu id="categoria" value="#{pedidoItemMB.aux}" style="width:150px">                
-                <f:selectItem  noSelectionOption="false" />
-                <f:selectItems value="#{clienteMB.clientes}" />
-            </p:selectOneMenu>
+                <p:selectOneMenu id="categoria" value="#{pedidoItemMB.aux}" style="width:150px">                    
+                    <f:selectItem  itemLabel="Select a cliente" noSelectionOption="false" />                
+                    <f:selectItems value="#{clienteMB.clientes}" />
+                </p:selectOneMenu>
                  
             </p:panelGrid>
              <p:commandButton value="Salvar" 
                               action ="#{pedidoItemMB.salvar()}"
                              update=":formproduto"
                              /> 
-             <p:dataTable id="pri" var="pi" value="#{pedidoItemMB.clientePedido}"
+             <p:dataTable id="ped" var="pi" value="#{pedidoItemMB.pedidosCompleto}"
                     paginator="true"
                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                     rowsPerPageTemplate="5,10,15"
@@ -46,6 +46,13 @@
                     </p:cellEditor>
             </p:column>
             
+            <p:column filterBy="#{pi.cliente.id}" headerText="ID Cliente" filterMatchMode="contains">
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="#{pi.cliente.id}" /></f:facet>
+                    <f:facet name="input"><p:inputText id="modelInput11" style="width:96%"/></f:facet>
+               </p:cellEditor>
+            </p:column>
+            
             <p:column filterBy="#{pi.cliente.nome}" headerText="Nome" filterMatchMode="contains">
                 <p:cellEditor>
                     <f:facet name="output"><h:outputText value="#{pi.cliente.nome}" /></f:facet>
@@ -59,6 +66,21 @@
                     <f:facet name="input"><p:inputText id="modelInput2" value="#{pi.data}" style="width:96%"/></f:facet>
                 </p:cellEditor>
             </p:column>
+            
+            
+            <p:column filterBy="#{pi.totalImposto()}" headerText="Total de Imposto" filterMatchMode="contains">
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="R$ #{pi.totalImposto()}" /></f:facet>
+                    <f:facet name="input"><p:inputText id="modelInput6" style="width:96%"/></f:facet>
+                </p:cellEditor>
+            </p:column>
+            
+            <p:column filterBy="#{pi.totalPedido()}" headerText="Preço total" filterMatchMode="contains">
+                <p:cellEditor>
+                    <f:facet name="output"><h:outputText value="R$ #{pi.totalPedido()}" /></f:facet>
+                    <f:facet name="input"><p:inputText id="modelInput7" style="width:96%"/></f:facet>
+                </p:cellEditor>
+            </p:column>
 
             <p:column filterBy="#{pedidoItemMB.qtItem(pi)}" headerText="Quantidade de itens" filterMatchMode="contains">
                 <p:cellEditor>
@@ -66,16 +88,73 @@
                     <f:facet name="input"><p:inputText id="modelInput3" value="" style="width:96%"/></f:facet>
                </p:cellEditor>
             </p:column>
-                            
+                                    
+            <p:column headerText="check for Produto">
+                <p:selectBooleanCheckbox value="#{pi.addItem}" />
+            </p:column>
             
-        </p:dataTable>
-         
-        <p:contextMenu for="pri">
+        </p:dataTable>                     
+             
+        <p:contextMenu for="ped">
             <p:menuitem value="Delete" 
-                        update="pri" 
+                        update="ped" 
                         icon="ui-icon-prose"
-                        actionListener="#{PedidoItemMB.removePedidoFromList()}"/>
+                        actionListener="#{pedidoItemMB.removePedidoFromList()}"/>
+            <p:menuitem value="Ver itens"
+                        onclick="PF('getProduto').show();"
+                        update="itemPed"
+                        />
+            
+            
         </p:contextMenu>
+             
+             
+        <p:commandButton value="Add Produto" 
+                         onclick="PF('inputProduto').show();"                         
+                         />
+        
+        <p:dialog header="Selecione o Produto" widgetVar="inputProduto" modal="false" showEffect="fade" hideEffect="fade" resizable="true">        
+            <p:panelGrid  columns="2">
+                
+                <h:outputText value="Produto:" />
+                <p:selectOneMenu id="prod" value="#{pedidoItemMB.nomeProd}">
+                    <f:selectItems value="#{produtoMB.produtos}"/>
+                </p:selectOneMenu>
+             
+                <h:outputText value="Quantidade" />
+                <h:inputText value="#{pedidoItemMB.qtProd}" />
+            </p:panelGrid>
+            
+            <p:commandButton value="salvar" 
+                             actionListener="#{pedidoItemMB.arrumarItem(pedidoItemMB.qtProd,produtoMB.produtos)}"
+                             update=":formproduto"
+                         />
+        </p:dialog>
+             
+        <p:dialog id="itemdialogo" header="Seus Itens" widgetVar="getProduto" modal="false" showEffect="fade" hideEffect="fade" resizable="true">
+            <p:dataTable id="itemPed" var="item" value="#{pedidoItemMB.selectedPedido.descricaoItem}"
+                    paginator="true"
+                    paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                    rowsPerPageTemplate="5,10,15"                                                
+                    >            
+            
+            <p:column filterBy="#{item}" headerText="ITENS DO PEDIDO" filterMatchMode="contains">               
+                    <h:outputText value="#{item}" />
+                    
+            </p:column>                        
+                      
+            <p:column  headerText="DELEÇÃO" >               
+                    <p:commandButton value="X" 
+                                     onclick="#{pedidoItemMB.delItem(item)}" 
+                                     update =":formproduto"
+                         />
+                    
+            </p:column>
+            
+        </p:dataTable>  
+            
+        </p:dialog>
+             
             
         </h:form>
 	</ui:define>

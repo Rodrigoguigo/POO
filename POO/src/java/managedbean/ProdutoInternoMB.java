@@ -13,6 +13,7 @@ import javax.faces.context.FacesContext;
 import modelo.ProdutoMercadoInterno;
 import org.primefaces.event.CellEditEvent;
 import servico.ProdutoInternoServico;
+import servico.ProdutoServico;
 
 /**
  *
@@ -25,6 +26,7 @@ public class ProdutoInternoMB {
     private ProdutoInternoServico servico = new ProdutoInternoServico();
     private List<ProdutoMercadoInterno> filteredProdutoInterno = servico.getAllProdutosInternos();
     private ProdutoMercadoInterno selectedProdutoInterno;
+    private ProdutoServico ajuda = new ProdutoServico();
 
     public ProdutoMercadoInterno getProdutoInterno() {
         return produtoInterno;
@@ -53,8 +55,11 @@ public class ProdutoInternoMB {
     public void salvar ()
     {
         servico.salvar(produtoInterno);
+        ajuda.getAllProdutos().add(produtoInterno);
         produtoInterno= new ProdutoMercadoInterno();
         filteredProdutoInterno = servico.getAllProdutosInternos();
+       
+        
     }
     
     public List<ProdutoMercadoInterno> getProdutosInternos ()    {
@@ -72,10 +77,15 @@ public class ProdutoInternoMB {
         }
     }
     
+    public void onChangeIncentivo(ProdutoMercadoInterno pr){
+        pr.setIncentivo(!pr.isIncentivo());
+    }
+    
     public void removeFromList()
     {
         servico.remover(selectedProdutoInterno);
         filteredProdutoInterno.remove(selectedProdutoInterno);
+        ajuda.getAllProdutos().remove(selectedProdutoInterno);
         selectedProdutoInterno = null;
     }
 }

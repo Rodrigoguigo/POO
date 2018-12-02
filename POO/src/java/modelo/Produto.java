@@ -37,9 +37,6 @@ public class Produto {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getNome() {
         return nome;
@@ -72,8 +69,11 @@ public class Produto {
     public void setImposto(double imposto) {
         this.imposto = imposto;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "Produto{" + "id= " + id + " , nome=" + nome + '}';
+    } 
     
     
 }

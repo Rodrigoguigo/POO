@@ -11,7 +11,10 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import modelo.Cliente;
 import modelo.Pedido;
+import modelo.Produto;
 import servico.ClienteServico;
+import servico.Dados;
+import servico.ProdutoServico;
 
 /**
  *
@@ -28,7 +31,26 @@ public class PedidoItemMB {
     private ArrayList<Pedido> filteredPedido = pedidosCompleto;
     private ClienteServico servico = new ClienteServico();
     private ArrayList<Cliente> fullCliente =   servico.gatAllClientes();
+    private String nomeProd;
+    private int qtProd;
 
+    public int getQtProd() {
+        return qtProd;
+    }
+
+    public void setQtProd(int qtProd) {
+        this.qtProd = qtProd;
+    }
+    
+    
+    public String getNomeProd() {
+        return nomeProd;
+    }
+
+    public void setNomeProd(String nomeProd) {
+        this.nomeProd = nomeProd;
+    }    
+    
     public String getAux() {
         return aux;
     }
@@ -94,14 +116,13 @@ public class PedidoItemMB {
         pedido.setData(new Date());
         pedido.getCliente().getClPedidos().add(pedido);
         pedidosCompleto.add(pedido);
-        clientePedido = pedido.getCliente().getClPedidos();
-        filteredPedido = clientePedido;
+        filteredPedido = pedidosCompleto;
         pedido = new Pedido();                
     }
     
     public String qtItem(Pedido pd)
     {
-        return Integer.toString(pd.getItens().size());
+        return Integer.toString(pd.qtItens());
     }
     
     public void removePedidoFromList()
@@ -111,4 +132,50 @@ public class PedidoItemMB {
         filteredPedido.remove(selectedPedido);
         selectedPedido = null;
     }
+    
+    public void onChangeList()
+    {
+        if(aux == null || aux.equals(""))
+        {
+            clientePedido = pedidosCompleto;
+        }
+        else
+        {
+            String value = aux.split(" ")[1];
+            for (Cliente selec: fullCliente )
+            {
+                if(selec.getId() == Integer.parseInt(value))
+                {
+                    clientePedido = selec.getClPedidos();
+                }
+            }
+        }
+    }
+    
+    public void arrumarItem(int qt,String prod)
+    {
+        String valor = prod.split(" ")[1];
+        Produto aux = null;
+        for(Produto tone : new ProdutoServico().getAllProdutos())
+        {
+            if(tone.getId() == Integer.parseInt(valor))
+            {
+                aux = tone;
+            }
+        }
+        for(Pedido adProd : pedidosCompleto)
+        {
+            if(adProd.isAddItem() && aux != null)
+            {
+                adProd.criarItem(qt, aux);
+            }
+        }
+    }
+    
+    public void delItem(String completa)
+    {
+        String valor = completa.split(" ")[3];
+        selectedPedido.removeItem(valor);
+    }
+    
 }

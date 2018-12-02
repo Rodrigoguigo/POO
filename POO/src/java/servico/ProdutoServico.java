@@ -23,7 +23,7 @@ public class ProdutoServico {
         produtos.add(c);
     }
     
-    public ArrayList<Produto> gatAllProdutos()
+    public ArrayList<Produto> getAllProdutos()
     {
         return produtos;
     }
