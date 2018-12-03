@@ -126,8 +126,8 @@
             </p:panelGrid>
             
             <p:commandButton value="salvar" 
-                             actionListener="#{pedidoItemMB.arrumarItem(pedidoItemMB.qtProd,produtoMB.produtos)}"
-                             update=":formproduto"
+                             actionListener="#{pedidoItemMB.arrumarItem(pedidoItemMB.qtProd,pedidoItemMB.nomeProd)}"
+                             update=":formproduto:ped"
                          />
         </p:dialog>
              
@@ -145,8 +145,8 @@
                       
             <p:column  headerText="DELEÇÃO" >               
                     <p:commandButton value="X" 
-                                     onclick="#{pedidoItemMB.delItem(item)}" 
-                                     update =":formproduto"
+                                     actionListener="#{pedidoItemMB.delItem(item)}" 
+                                     update=":formproduto:ped itemPed"
                          />
                     
             </p:column>

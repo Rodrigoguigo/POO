@@ -14,12 +14,14 @@
             <file>file:/C:/Users/glauc/Documents/NetBeansProjects/PrAula30102018/web/funcionario.xhtml</file>
         </group>
         <group>
-            <file>file:/C:/Users/gutao/OneDrive/Área%20de%20Trabalho/reclone/POO/POO/src/java/managedbean/ClienteMB.java</file>
-            <file>file:/C:/Users/gutao/OneDrive/Área%20de%20Trabalho/reclone/POO/POO/web/produto.xhtml</file>
-            <file>file:/C:/Users/gutao/OneDrive/Área%20de%20Trabalho/reclone/POO/POO/web/pedidos.xhtml</file>
-            <file>file:/C:/Users/gutao/OneDrive/Área%20de%20Trabalho/reclone/POO/POO/src/java/managedbean/PedidoItemMB.java</file>
-            <file>file:/C:/Users/gutao/OneDrive/Área%20de%20Trabalho/reclone/POO/POO/src/java/modelo/Pedido.java</file>
-            <file>file:/C:/Users/gutao/OneDrive/Área%20de%20Trabalho/reclone/POO/POO/src/java/modelo/ItemPedido.java</file>
+            <file>file:/C:/Users/Rodrigo/Documents/GitHub/POO/POO/src/java/modelo/ItemPedido.java</file>
+            <file>file:/C:/Users/Rodrigo/Documents/GitHub/POO/POO/src/java/servico/Dados.java</file>
+            <file>file:/C:/Users/Rodrigo/Documents/GitHub/POO/POO/src/java/managedbean/ProdutoInternoMB.java</file>
+            <file>file:/C:/Users/Rodrigo/Documents/GitHub/POO/POO/web/pedidos.xhtml</file>
+            <file>file:/C:/Users/Rodrigo/Documents/GitHub/POO/POO/src/java/modelo/ProdutoMercadoInterno.java</file>
+            <file>file:/C:/Users/Rodrigo/Documents/GitHub/POO/POO/web/produtoMercadoInterno.xhtml</file>
+            <file>file:/C:/Users/Rodrigo/Documents/GitHub/POO/POO/src/java/servico/ProdutoServico.java</file>
+            <file>file:/C:/Users/Rodrigo/Documents/GitHub/POO/POO/src/java/modelo/Pedido.java</file>
         </group>
     </open-files>
 </project-private>

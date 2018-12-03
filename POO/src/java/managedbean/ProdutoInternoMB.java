@@ -77,8 +77,11 @@ public class ProdutoInternoMB {
         }
     }
     
-    public void onChangeIncentivo(ProdutoMercadoInterno pr){
-        pr.setIncentivo(!pr.isIncentivo());
+    public void onChangeIncentivo(){
+        boolean value = selectedProdutoInterno.isIncentivo();
+        
+        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cell Changed", "Old: " + value + ", New:" + !value);
+        FacesContext.getCurrentInstance().addMessage(null, msg);
     }
     
     public void removeFromList()

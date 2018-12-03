@@ -31,14 +31,13 @@ def tweak(lista):
 come = time.time()
 
 ideal = 33061.62626367373
-temp = 1000000
 
-f = open("res.txt", "r")
+f = open("C:\\Users\Rodrigo\Documents\GitHub\POO\Eletiva\scripts\\res.txt", "r")
 aux2 = list(map(int, f.read().split("\n")))
 f.close()
 total = 0
 
-f = open("coord.txt", "r")
+f = open("C:\\Users\Rodrigo\Documents\GitHub\POO\Eletiva\scripts\coord.txt", "r")
 aux = f.read().split("\n")
 f.close()
 cidades = []
@@ -46,15 +45,18 @@ for i in range(len(aux)):
     aux[i] = aux[i].split(" ")
     aux[i] = list(map(int, aux[i]))
     cidades.append(TspEle(aux[i][0], aux[i][1], aux[i][2]))
-s = aux2
+
+temp = len(aux) ** 0.5
+s = list(range(48))
+random.shuffle(s)
 best = s
 while temp > 0:
     r = tweak(s)
     distr = calcTotal(r, cidades)
     dists = calcTotal(s, cidades)
-    if distr < dists or random.randint(0, 1000) / 1000 < math.e ** ((distr - dists) / temp):
+    if distr < dists or random.random() < math.e ** ((dists/1000 - distr/1000) / temp):
         s = r
-    temp -= 1
+    temp -= 0.00005
 
     if dists < calcTotal(best, cidades):
         best = s

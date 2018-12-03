@@ -109,7 +109,9 @@
                         <f:selectItem itemLabel="All" itemValue=""/>
                     </p:selectOneButton>
                 </f:facet>
-                <p:selectBooleanCheckbox value="#{pr.incentivo}" onchange="#{produtoInternoMB.onChangeIncentivo(pr)}"/>
+                <p:selectBooleanCheckbox value="#{pr.incentivo}">
+                    <p:ajax update=":formprodutoInterno:msgs" />
+                </p:selectBooleanCheckbox> 
             </p:column>
 
         </p:dataTable>
